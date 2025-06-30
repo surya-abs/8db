@@ -1,0 +1,7 @@
+apiVersion: v2
+name: mongodb
+description: A Helm chart for MongoDB
+type: application
+version: 0.1.0
+appVersion: "6.0"
+icon: https://www.mongodb.com/assets/images/global/leaf.png

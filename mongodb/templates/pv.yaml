@@ -1,0 +1,14 @@
+{{- if .Values.mongodb.enabled }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongodb-pv
+spec:
+  capacity:
+    storage: {{ .Values.mongodb.storage.size }}
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: {{ .Values.mongodb.storage.className }}
+  hostPath:
+    path: {{ .Values.mongodb.storage.path }}
+{{- end }}

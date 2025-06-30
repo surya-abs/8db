@@ -1,0 +1,19 @@
+mysql:
+  enabled: true
+  replicaCount: 1
+
+  image:
+    repository: mysql
+    tag: "8.0"
+    pullPolicy: IfNotPresent
+
+  storage:
+    size: 5Gi
+    className: manual
+    path: /data/mysql
+
+  auth:
+    rootPassword: "supersecretpassword"
+
+  service:
+    nodePort: 33306
