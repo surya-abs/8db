@@ -3,25 +3,25 @@ entries:
   mongodb:
   - apiVersion: v2
     appVersion: "6.0"
-    created: "2025-06-30T17:11:45.279081629+05:30"
+    created: "2025-06-30T17:12:45.026088722+05:30"
     description: A Helm chart for MongoDB
     digest: 7b01cffb82e059a308c19aa73e7014dfb5b29ac42ff20f117ee02122329ba9d1
     icon: https://www.mongodb.com/assets/images/global/leaf.png
     name: mongodb
     type: application
     urls:
-    - https://surya-abs.github.io/8db/mongodb-0.1.0.tgz
+    - https://surya-abs.github.io/8db/docs/mongodb-0.1.0.tgz
     version: 0.1.0
   mysql:
   - apiVersion: v2
     appVersion: "8.0"
-    created: "2025-06-30T17:11:45.27935673+05:30"
+    created: "2025-06-30T17:12:45.026393235+05:30"
     description: A Helm chart for MySQL
     digest: 0e147b6b690ef9e67925e8d1949f9adca0c5b73645602188b8de85e0a822afad
     icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
     name: mysql
     type: application
     urls:
-    - https://surya-abs.github.io/8db/mysql-0.1.0.tgz
+    - https://surya-abs.github.io/8db/docs/mysql-0.1.0.tgz
     version: 0.1.0
-generated: "2025-06-30T17:11:45.278637899+05:30"
+generated: "2025-06-30T17:12:45.025678912+05:30"
