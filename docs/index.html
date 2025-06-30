@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>8db - Helm Chart Repository</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #333;
+    }
+    h1 {
+      color: #0366d6;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>📦 8db - Helm Chart Repository</h1>
+  <p>This is a public Helm chart repository for deploying common databases to Kubernetes using Helm.</p>
+
+  <h2>Included Charts:</h2>
+  <ul>
+    <li><strong>MongoDB</strong></li>
+    <li><strong>MySQL</strong></li>
+  </ul>
+
+  <h2>🔧 How to Use</h2>
+  <p>Add this repo to Helm:</p>
+  <pre><code>helm repo add 8db https://surya-abs.github.io/8db/docs</code></pre>
+  <p>Install a chart:</p>
+  <pre><code>helm install my-mongo 8db/mongodb
+helm install my-mysql 8db/mysql</code></pre>
+
+  <h2>📄 Index File</h2>
+  <p>You can access the raw Helm repo index file directly:</p>
+  <a href="index.yaml">View index.yaml</a>
+
+  <hr>
+  <p style="font-size: 0.9em;">Hosted on GitHub Pages from the <code>/docs</code> folder of <a href="https://github.com/surya-abs/8db">github.com/surya-abs/8db</a>.</p>
+</body>
+</html>
