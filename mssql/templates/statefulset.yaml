@@ -4,11 +4,11 @@ kind: StatefulSet
 metadata:
   name: mssql
 spec:
+  serviceName: mssql
+  replicas: 1
   selector:
     matchLabels:
       app: mssql
-  serviceName: mssql
-  replicas: 1
   template:
     metadata:
       labels:
@@ -16,6 +16,7 @@ spec:
     spec:
       securityContext:
         fsGroup: 10001
+      restartPolicy: Always
       containers:
         - name: mssql
           image: "{{ .Values.mssql.image.repository }}:{{ .Values.mssql.image.tag }}"
@@ -39,8 +40,8 @@ spec:
         name: mssql-storage
       spec:
         accessModes: ["ReadWriteOnce"]
+        storageClassName: {{ .Values.mssql.storage.storageClassName }}
         resources:
           requests:
             storage: {{ .Values.mssql.storage.size }}
-        storageClassName: {{ .Values.mssql.storage.storageClassName }}
 {{- end }}
