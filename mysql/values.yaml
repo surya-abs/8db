@@ -16,4 +16,4 @@ mysql:
     rootPassword: "supersecretpassword"
 
   service:
-    nodePort: 33306
+    nodePort: 31306
