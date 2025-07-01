@@ -16,9 +16,6 @@ spec:
     spec:
       securityContext:
         fsGroup: 10001
-        runAsUser: 10001
-        runAsGroup: 10001
-        runAsNonRoot: true
       restartPolicy: Always
       containers:
         - name: mssql
@@ -45,11 +42,8 @@ spec:
             - name: mssql-storage
               mountPath: /var/opt/mssql
           securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: false
-            capabilities:
-              drop:
-                - ALL
+            runAsUser: 10001
+            runAsGroup: 10001
   volumeClaimTemplates:
     - metadata:
         name: mssql-storage
