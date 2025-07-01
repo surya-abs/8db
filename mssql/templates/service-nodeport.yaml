@@ -1,0 +1,14 @@
+{{- if and .Values.mssql.enabled .Values.mssql.nodePortService.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssql-nodeport
+spec:
+  type: NodePort
+  ports:
+    - port: 1433
+      targetPort: 1433
+      nodePort: {{ .Values.mssql.service.nodePort }}
+  selector:
+    app: mssql
+{{- end }}

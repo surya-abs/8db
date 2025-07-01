@@ -3,7 +3,7 @@ entries:
   mongodb:
   - apiVersion: v2
     appVersion: "6.0"
-    created: "2025-06-30T17:12:45.026088722+05:30"
+    created: "2025-07-01T16:10:46.329560429+05:30"
     description: A Helm chart for MongoDB
     digest: 7b01cffb82e059a308c19aa73e7014dfb5b29ac42ff20f117ee02122329ba9d1
     icon: https://www.mongodb.com/assets/images/global/leaf.png
@@ -12,16 +12,27 @@ entries:
     urls:
     - https://surya-abs.github.io/8db/docs/mongodb-0.1.0.tgz
     version: 0.1.0
+  mssql:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-01T16:10:46.329888646+05:30"
+    description: A Helm chart for MSSQL
+    digest: bc5130674773ef1c34d432b3d3a4d81e0278ba3b64b59954a4c5cd31ebb910bb
+    name: mssql
+    type: application
+    urls:
+    - https://surya-abs.github.io/8db/docs/mssql-0.1.0.tgz
+    version: 0.1.0
   mysql:
   - apiVersion: v2
     appVersion: "8.0"
-    created: "2025-06-30T17:12:45.026393235+05:30"
+    created: "2025-07-01T16:10:46.330144052+05:30"
     description: A Helm chart for MySQL
-    digest: 0e147b6b690ef9e67925e8d1949f9adca0c5b73645602188b8de85e0a822afad
+    digest: f5408077b52b78a773845de63b7925a666cfdae2948e659f0d95d2df3a957527
     icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
     name: mysql
     type: application
     urls:
     - https://surya-abs.github.io/8db/docs/mysql-0.1.0.tgz
     version: 0.1.0
-generated: "2025-06-30T17:12:45.025678912+05:30"
+generated: "2025-07-01T16:10:46.329099365+05:30"

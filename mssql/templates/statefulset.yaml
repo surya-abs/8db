@@ -1,0 +1,44 @@
+{{- if .Values.mssql.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mssql
+spec:
+  selector:
+    matchLabels:
+      app: mssql
+  serviceName: mssql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mssql
+    spec:
+      containers:
+        - name: mssql
+          image: "{{ .Values.mssql.image.repository }}:{{ .Values.mssql.image.tag }}"
+          imagePullPolicy: {{ .Values.mssql.image.pullPolicy }}
+          ports:
+            - containerPort: 1433
+              name: mssql
+          env:
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: SA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mssql-secret
+                  key: SA_PASSWORD
+          volumeMounts:
+            - name: mssql-storage
+              mountPath: /var/opt/mssql
+  volumeClaimTemplates:
+    - metadata:
+        name: mssql-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.mssql.storage.size }}
+        storageClassName: {{ .Values.mssql.storage.storageClassName }}
+{{- end }}

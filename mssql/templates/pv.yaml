@@ -1,0 +1,15 @@
+{{- if .Values.mssql.enabled }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mssql-pv
+spec:
+  capacity:
+    storage: {{ .Values.mssql.storage.size }}
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.mssql.storage.storageClassName }}
+  hostPath:
+    path: {{ .Values.mssql.storage.path }}
+{{- end }}

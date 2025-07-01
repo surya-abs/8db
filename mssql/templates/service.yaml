@@ -1,0 +1,13 @@
+{{- if and .Values.mssql.enabled .Values.mssql.service.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssql
+spec:
+  ports:
+    - port: 1433
+      targetPort: 1433
+  clusterIP: None
+  selector:
+    app: mssql
+{{- end }}
