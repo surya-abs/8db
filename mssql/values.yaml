@@ -6,11 +6,6 @@ mssql:
     tag: 2019-latest
     pullPolicy: IfNotPresent
 
-  service:
-    type: NodePort
-    port: 1433
-    nodePort: 31433
-
   storage:
     size: 5Gi
     storageClassName: manual
