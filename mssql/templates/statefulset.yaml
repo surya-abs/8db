@@ -16,6 +16,9 @@ spec:
     spec:
       securityContext:
         fsGroup: 10001
+        runAsUser: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
       restartPolicy: Always
       containers:
         - name: mssql
@@ -32,9 +35,21 @@ spec:
                 secretKeyRef:
                   name: mssql-secret
                   key: SA_PASSWORD
+            - name: MSSQL_DATA_DIR
+              value: /var/opt/mssql/data
+            - name: MSSQL_LOG_DIR
+              value: /var/opt/mssql/log
+            - name: MSSQL_BACKUP_DIR
+              value: /var/opt/mssql/backup
           volumeMounts:
             - name: mssql-storage
               mountPath: /var/opt/mssql
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            capabilities:
+              drop:
+                - ALL
   volumeClaimTemplates:
     - metadata:
         name: mssql-storage
