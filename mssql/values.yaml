@@ -12,7 +12,7 @@ mssql:
     path:  /data/mssql
 
   credentials:
-    saPassword: "supersecretpassword"
+    saPassword: "SuperSecret@123"
 
   service:
     nodePort: 31433

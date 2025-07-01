@@ -14,6 +14,8 @@ spec:
       labels:
         app: mssql
     spec:
+      securityContext:
+        fsGroup: 10001
       containers:
         - name: mssql
           image: "{{ .Values.mssql.image.repository }}:{{ .Values.mssql.image.tag }}"
