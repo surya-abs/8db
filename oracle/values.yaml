@@ -2,7 +2,7 @@ oracle:
   enabled: true
   name: oracle
   image:
-    repository: gvenzl/oracle-xe
+    repository: gvenzl/oracle-free
     tag: "21-slim"
     pullPolicy: IfNotPresent
 

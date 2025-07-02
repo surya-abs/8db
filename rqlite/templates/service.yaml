@@ -1,0 +1,17 @@
+{{- if .Values.rqlite.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: rqlite
+spec:
+  selector:
+    app: rqlite
+  ports:
+    - port: 4001
+      name: http
+      targetPort: 4001
+    - port: 4002
+      name: raft
+      targetPort: 4002
+  type: ClusterIP
+{{- end }}

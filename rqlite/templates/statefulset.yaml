@@ -1,0 +1,45 @@
+{{- if .Values.rqlite.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rqlite
+spec:
+  serviceName: rqlite
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rqlite
+  template:
+    metadata:
+      labels:
+        app: rqlite
+    spec:
+      containers:
+        - name: rqlite
+          image: "{{ .Values.rqlite.image.repository }}:{{ .Values.rqlite.image.tag }}"
+          imagePullPolicy: {{ .Values.rqlite.image.pullPolicy }}
+          args:
+            - "-http-addr=0.0.0.0:4001"
+            - "-raft-addr=0.0.0.0:4002"
+            - "-auth=$(RQLITE_USERNAME):$(RQLITE_PASSWORD)"
+            - "/data/rqlite"
+          envFrom:
+          - secretRef:
+              name: rqlite-secret
+          ports:
+            - containerPort: 4001
+              name: http
+            - containerPort: 4002
+              name: raft
+          volumeMounts:
+            - name: rqlite-storage
+              mountPath: /data/rqlite
+  volumeClaimTemplates:
+    - metadata:
+        name: rqlite-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.rqlite.storage.size }}
+{{- end }}

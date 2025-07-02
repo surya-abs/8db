@@ -1,0 +1,15 @@
+{{- if .Values.rqlite.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: rqlite-nodeport
+spec:
+  type: NodePort
+  selector:
+    app: rqlite
+  ports:
+    - port: 4001
+      targetPort: 4001
+      nodePort: {{ .Values.rqlite.service.nodePort }}
+      name: http
+{{- end }}

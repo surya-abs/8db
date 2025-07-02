@@ -1,0 +1,14 @@
+rqlite:
+  enabled: true
+  name: rqlite
+  image:
+    repository: rqlite/rqlite
+    tag: "v8.23.0"
+    pullPolicy: IfNotPresent
+
+  service:
+    nodePort: 31401
+
+  storage:
+    size: 1Gi
+
