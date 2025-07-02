@@ -1,0 +1,17 @@
+mariadb:
+  enabled: true
+  name: mariadb
+  image:
+    repository: mariadb
+    tag: "11.4"
+    pullPolicy: IfNotPresent
+
+  credentials:
+    rootPassword: "SuperSecretRoot@123"
+    database: "admin"
+
+  storage:
+    size: 5Gi
+
+  service:
+    nodePort: 30306
