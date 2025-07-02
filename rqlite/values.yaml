@@ -5,6 +5,10 @@ rqlite:
     repository: rqlite/rqlite
     tag: "v8.23.0"
     pullPolicy: IfNotPresent
+  
+  auth:
+    username: admin
+    password: SuperSecret@123
 
   service:
     nodePort: 31401
