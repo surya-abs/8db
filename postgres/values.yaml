@@ -1,0 +1,19 @@
+postgresql:
+  enabled: true
+  name: postgresql
+  image:
+    repository: postgres
+    tag: "16"
+    pullPolicy: IfNotPresent
+
+  credentials:
+    username: admin
+    password: SuperSecretPg@123
+    database: admin
+
+  storage:
+    size: 5Gi
+
+  service:
+    port: 5432
+    nodePort: 31311

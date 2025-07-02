@@ -1,0 +1,15 @@
+{{- if .Values.postgresql.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql-nodeport
+spec:
+  type: NodePort
+  selector:
+    app: postgresql
+  ports:
+    - name: postgresql
+      port: 5432
+      targetPort: 5432
+      nodePort: {{ .Values.postgresql.service.nodePort }}
+{{- end }}

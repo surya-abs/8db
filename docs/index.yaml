@@ -3,7 +3,7 @@ entries:
   mariadb:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-02T15:21:44.263319471+05:30"
+    created: "2025-07-02T15:46:29.310742293+05:30"
     description: A Helm chart for MariaDB
     digest: 94ae7fe535f145d241e9167f2019d8e365b0e5b541700b9e5d571e50e7812461
     name: mariadb
@@ -14,7 +14,7 @@ entries:
   mongodb:
   - apiVersion: v2
     appVersion: "6.0"
-    created: "2025-07-02T15:21:44.264353353+05:30"
+    created: "2025-07-02T15:46:29.322631009+05:30"
     description: A Helm chart for MongoDB
     digest: 7b01cffb82e059a308c19aa73e7014dfb5b29ac42ff20f117ee02122329ba9d1
     icon: https://www.mongodb.com/assets/images/global/leaf.png
@@ -26,7 +26,7 @@ entries:
   mssql:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-02T15:21:44.264979981+05:30"
+    created: "2025-07-02T15:46:29.326760158+05:30"
     description: A Helm chart for Kubernetes
     digest: 43f151ad6ff82a10b5bc86c32975ea6f34f6979ba2720fe8319f3d9ef4c31a05
     name: mssql
@@ -37,7 +37,7 @@ entries:
   mysql:
   - apiVersion: v2
     appVersion: "8.0"
-    created: "2025-07-02T15:21:44.265614792+05:30"
+    created: "2025-07-02T15:46:29.329126532+05:30"
     description: A Helm chart for MySQL
     digest: f5408077b52b78a773845de63b7925a666cfdae2948e659f0d95d2df3a957527
     icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
@@ -46,4 +46,15 @@ entries:
     urls:
     - https://surya-abs.github.io/8db/docs/mysql-0.1.0.tgz
     version: 0.1.0
-generated: "2025-07-02T15:21:44.262648444+05:30"
+  postgres:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-02T15:46:29.330376349+05:30"
+    description: A Helm chart for Kubernetes
+    digest: aa4a9e4684ac57b3e9441bc222896afa0e9a538348225d990263b2f323e1710d
+    name: postgres
+    type: application
+    urls:
+    - https://surya-abs.github.io/8db/docs/postgres-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-07-02T15:46:29.309183103+05:30"
