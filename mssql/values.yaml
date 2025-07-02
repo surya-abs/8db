@@ -8,7 +8,6 @@ mssql:
 
   storage:
     size: 5Gi
-    storageClassName: manual
     path:  /data/mssql
 
   credentials:

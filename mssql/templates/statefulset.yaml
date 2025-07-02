@@ -32,24 +32,14 @@ spec:
                 secretKeyRef:
                   name: mssql-secret
                   key: SA_PASSWORD
-            - name: MSSQL_DATA_DIR
-              value: /var/opt/mssql/data
-            - name: MSSQL_LOG_DIR
-              value: /var/opt/mssql/log
-            - name: MSSQL_BACKUP_DIR
-              value: /var/opt/mssql/backup
           volumeMounts:
             - name: mssql-storage
               mountPath: /var/opt/mssql
-          securityContext:
-            runAsUser: 10001
-            runAsGroup: 10001
   volumeClaimTemplates:
     - metadata:
         name: mssql-storage
       spec:
         accessModes: ["ReadWriteOnce"]
-        storageClassName: {{ .Values.mssql.storage.storageClassName }}
         resources:
           requests:
             storage: {{ .Values.mssql.storage.size }}
