@@ -1,9 +1,20 @@
 apiVersion: v1
 entries:
+  dragonfly:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-02T16:38:59.451285566+05:30"
+    description: A Helm chart for Kubernetes
+    digest: 9f8d4e43bd023467ff660433c093a024d819ba26221325b9689292df8628cd67
+    name: dragonfly
+    type: application
+    urls:
+    - https://surya-abs.github.io/8db/docs/dragonfly-0.1.0.tgz
+    version: 0.1.0
   mariadb:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-02T16:13:57.508638271+05:30"
+    created: "2025-07-02T16:38:59.452161345+05:30"
     description: A Helm chart for MariaDB
     digest: 94ae7fe535f145d241e9167f2019d8e365b0e5b541700b9e5d571e50e7812461
     name: mariadb
@@ -14,7 +25,7 @@ entries:
   mongodb:
   - apiVersion: v2
     appVersion: "6.0"
-    created: "2025-07-02T16:13:57.50913818+05:30"
+    created: "2025-07-02T16:38:59.45259784+05:30"
     description: A Helm chart for MongoDB
     digest: 7b01cffb82e059a308c19aa73e7014dfb5b29ac42ff20f117ee02122329ba9d1
     icon: https://www.mongodb.com/assets/images/global/leaf.png
@@ -26,7 +37,7 @@ entries:
   mssql:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-02T16:13:57.509615831+05:30"
+    created: "2025-07-02T16:38:59.45310356+05:30"
     description: A Helm chart for Kubernetes
     digest: 43f151ad6ff82a10b5bc86c32975ea6f34f6979ba2720fe8319f3d9ef4c31a05
     name: mssql
@@ -37,7 +48,7 @@ entries:
   mysql:
   - apiVersion: v2
     appVersion: "8.0"
-    created: "2025-07-02T16:13:57.510061324+05:30"
+    created: "2025-07-02T16:38:59.453460088+05:30"
     description: A Helm chart for MySQL
     digest: f5408077b52b78a773845de63b7925a666cfdae2948e659f0d95d2df3a957527
     icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
@@ -49,7 +60,7 @@ entries:
   postgres:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-02T16:13:57.510405821+05:30"
+    created: "2025-07-02T16:38:59.453763192+05:30"
     description: A Helm chart for Kubernetes
     digest: aa4a9e4684ac57b3e9441bc222896afa0e9a538348225d990263b2f323e1710d
     name: postgres
@@ -60,7 +71,7 @@ entries:
   redis:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-02T16:13:57.510645419+05:30"
+    created: "2025-07-02T16:38:59.454064096+05:30"
     description: A Helm chart for Redis
     digest: 12f21859e849ce77dc09df264a430964b9e68602296a89881eabb47b52f802ab
     name: redis
@@ -68,4 +79,4 @@ entries:
     urls:
     - https://surya-abs.github.io/8db/docs/redis-0.1.0.tgz
     version: 0.1.0
-generated: "2025-07-02T16:13:57.507925035+05:30"
+generated: "2025-07-02T16:38:59.450907166+05:30"

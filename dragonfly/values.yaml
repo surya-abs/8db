@@ -1,0 +1,16 @@
+dragonfly:
+  enabled: true
+  name: dragonfly
+  image:
+    repository: docker.dragonflydb.io/dragonflydb/dragonfly
+    tag: "latest"
+    pullPolicy: IfNotPresent
+
+  password: "SuperSecretDfly@123x"
+
+  storage:
+    size: 2Gi
+
+  service:
+    port: 6379
+    nodePort: 31389

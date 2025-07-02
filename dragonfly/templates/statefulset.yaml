@@ -1,0 +1,44 @@
+{{- if .Values.dragonfly.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: dragonfly
+spec:
+  serviceName: dragonfly
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dragonfly
+  template:
+    metadata:
+      labels:
+        app: dragonfly
+    spec:
+      containers:
+        - name: dragonfly
+          image: "{{ .Values.dragonfly.image.repository }}:{{ .Values.dragonfly.image.tag }}"
+          imagePullPolicy: {{ .Values.dragonfly.image.pullPolicy }}
+          ports:
+            - containerPort: 6379
+              name: dragonfly
+          args:
+            - "--requirepass"
+            - "$(DRAGONFLY_PASSWORD)"
+          env:
+            - name: DRAGONFLY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dragonfly-secret
+                  key: DRAGONFLY_PASSWORD
+          volumeMounts:
+            - name: dragonfly-storage
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: dragonfly-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.dragonfly.storage.size }}
+{{- end }}
