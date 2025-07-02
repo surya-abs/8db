@@ -7,7 +7,7 @@ mariadb:
     pullPolicy: IfNotPresent
 
   credentials:
-    rootPassword: "SuperSecretRoot@123"
+    rootPassword: "SuperSecretRoot@123xx"
     database: "admin"
 
   storage:
