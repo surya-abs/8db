@@ -1,0 +1,15 @@
+{{- if .Values.memcached.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: memcached-nodeport
+spec:
+  type: NodePort
+  selector:
+    app: memcached
+  ports:
+    - name: memcached
+      port: 11211
+      targetPort: 11211
+      nodePort: {{ .Values.memcached.service.nodePort }}
+{{- end }}

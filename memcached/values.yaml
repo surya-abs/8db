@@ -1,0 +1,15 @@
+memcached:
+  enabled: true
+  name: memcached
+  image:
+    repository: memcached
+    tag: "1.6"
+    pullPolicy: IfNotPresent
+
+  password: "SuperSecretMem@123"  # optional, only for SASL-enabled builds
+
+  storage:
+    size: 1Gi
+
+  service:
+    nodePort: 31388

@@ -1,0 +1,48 @@
+{{- if .Values.memcached.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: memcached
+spec:
+  serviceName: memcached
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memcached
+  template:
+    metadata:
+      labels:
+        app: memcached
+    spec:
+      containers:
+        - name: memcached
+          image: "{{ .Values.memcached.image.repository }}:{{ .Values.memcached.image.tag }}"
+          imagePullPolicy: {{ .Values.memcached.image.pullPolicy }}
+          ports:
+            - containerPort: 11211
+              name: memcached
+          args:
+            - "-m"
+            - "64"
+            - "-vv"
+            {{- if .Values.memcached.password }}
+            - "-S"  # SASL auth
+            {{- end }}
+          env:
+            - name: MEMCACHED_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: memcached-secret
+                  key: MEMCACHED_PASSWORD
+          volumeMounts:
+            - name: memcached-storage
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: memcached-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.memcached.storage.size }}
+{{- end }}
