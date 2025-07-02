@@ -1,0 +1,21 @@
+oracle:
+  enabled: true
+  name: oracle
+  image:
+    repository: gvenzl/oracle-xe
+    tag: "21-slim"
+    pullPolicy: IfNotPresent
+
+  credentials:
+    sysPassword: "SuperSecretOra@123"            # For SYS and SYSTEM
+    appUser: appuser                             # Optional custom user
+    appUserPassword: "AppUserPass@123"           # Password for appuser
+    database: XEPDB1                              # Optional: custom DB name
+
+  storage:
+    size: 10Gi
+    # storageClassName: manual
+    path: /data/oracle
+
+  service:
+    nodePort: 31521

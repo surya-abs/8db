@@ -1,0 +1,38 @@
+{{- if .Values.oracle.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: oracle
+spec:
+  serviceName: oracle
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oracle
+  template:
+    metadata:
+      labels:
+        app: oracle
+    spec:
+      containers:
+        - name: oracle
+          image: "{{ .Values.oracle.image.repository }}:{{ .Values.oracle.image.tag }}"
+          imagePullPolicy: {{ .Values.oracle.image.pullPolicy }}
+          ports:
+            - containerPort: 1521
+              name: oracle
+          envFrom:
+            - secretRef:
+                name: oracle-secret
+          volumeMounts:
+            - name: oracle-storage
+              mountPath: /opt/oracle/oradata
+  volumeClaimTemplates:
+    - metadata:
+        name: oracle-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.oracle.storage.size }}
+{{- end }}
