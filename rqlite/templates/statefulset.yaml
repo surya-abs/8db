@@ -21,11 +21,7 @@ spec:
           args:
             - "-http-addr=0.0.0.0:4001"
             - "-raft-addr=0.0.0.0:4002"
-            - "-auth=$(RQLITE_USERNAME):$(RQLITE_PASSWORD)"
             - "/data/rqlite"
-          envFrom:
-          - secretRef:
-              name: rqlite-secret
           ports:
             - containerPort: 4001
               name: http

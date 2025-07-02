@@ -3,12 +3,8 @@ rqlite:
   name: rqlite
   image:
     repository: rqlite/rqlite
-    tag: "v8.23.0"
+    tag: "v8.38.2"
     pullPolicy: IfNotPresent
-  
-  auth:
-    username: admin
-    password: SuperSecret@123
 
   service:
     nodePort: 31401
