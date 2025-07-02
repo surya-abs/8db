@@ -1,0 +1,16 @@
+redis:
+  enabled: true
+  name: redis
+  image:
+    repository: redis
+    tag: "7.2"
+    pullPolicy: IfNotPresent
+
+  password: "SuperSecretRedis@123x"
+
+  storage:
+    size: 2Gi  
+
+  service:
+    port: 6379
+    nodePort: 31379
