@@ -1,0 +1,17 @@
+elasticsearch:
+  enabled: true
+  name: elasticsearch
+  image:
+    repository: docker.io/elasticsearch:7.17.21
+    pullPolicy: IfNotPresent
+
+  auth:
+    username: elastic
+    password: SuperSecretES@123
+
+  storage:
+    size: 5Gi
+
+  service:
+    nodePort: 31920
+

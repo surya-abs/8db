@@ -1,6 +1,6 @@
 apiVersion: v2
-name: rqlite
-description: A Helm chart for Kubernetes
+name: elasticsearch
+description: A Helm chart for Elastic Search
 
 # A chart can be either an 'application' or a 'library' chart.
 #

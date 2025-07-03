@@ -1,0 +1,41 @@
+{{- if .Values.elasticsearch.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: elasticsearch
+spec:
+  serviceName: elasticsearch
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      containers:
+        - name: elasticsearch
+          image: {{ .Values.elasticsearch.image.repository }}
+          imagePullPolicy: {{ .Values.elasticsearch.image.pullPolicy }}
+          ports:
+            - containerPort: 9200
+            - containerPort: 9300
+          env:
+            - name: discovery.type
+              value: single-node
+          envFrom:
+            - secretRef:
+              name: elasticsearch-secret
+          volumeMounts:
+            - name: elasticsearch-storage
+              mountPath: /usr/share/elasticsearch/data
+  volumeClaimTemplates:
+    - metadata:
+        name: elasticsearch-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]        
+        resources:
+          requests:
+            storage: {{ .Values.elasticsearch.storage.size }}
+{{- end }}
