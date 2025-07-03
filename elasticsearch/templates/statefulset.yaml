@@ -28,7 +28,7 @@ spec:
               value: single-node
           envFrom:
             - secretRef:
-              name: elasticsearch-secret
+                name: elasticsearch-secret
           volumeMounts:
             - name: elasticsearch-storage
               mountPath: /usr/share/elasticsearch/data
