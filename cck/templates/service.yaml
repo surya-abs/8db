@@ -1,0 +1,19 @@
+{{- if .Values.cockroachdb.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: cockroachdb
+  labels:
+    app: cockroachdb
+spec:
+  type: ClusterIP
+  selector:
+    app: cockroachdb
+  ports:
+    - name: sql
+      port: 26257
+      targetPort: 26257
+    - name: http
+      port: 8080
+      targetPort: 8080
+{{- end }}

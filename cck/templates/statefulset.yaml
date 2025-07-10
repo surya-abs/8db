@@ -1,0 +1,49 @@
+{{- if .Values.cockroachdb.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cockroachdb
+  labels:
+    app: cockroachdb
+spec:
+  serviceName: cockroachdb
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cockroachdb
+  template:
+    metadata:
+      labels:
+        app: cockroachdb
+    spec:
+      containers:
+        - name: cockroachdb
+          image: "{{ .Values.cockroachdb.image.repository }}:{{ .Values.cockroachdb.image.tag }}"
+          imagePullPolicy: {{ .Values.cockroachdb.image.pullPolicy }}
+          command:
+            - "/cockroach"
+            - "start-single-node"
+            - "--insecure"
+            - "--http-addr=0.0.0.0:8080"
+            - "--listen-addr=0.0.0.0:26257"
+            - "--store=/cockroach/cockroach-data"
+          ports:
+            - containerPort: 26257
+              name: sql
+            - containerPort: 8080
+              name: http
+          envFrom:
+            - secretRef:
+                name: cockroachdb-secret
+          volumeMounts:
+            - name: cockroachdb-data
+              mountPath: /cockroach/cockroach-data
+  volumeClaimTemplates:
+    - metadata:
+        name: cockroachdb-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.cockroachdb.storage.size }}
+{{- end }}

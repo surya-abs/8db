@@ -1,0 +1,24 @@
+cockroachdb:
+  enabled: true
+
+  image:
+    repository: cockroachdb/cockroach
+    tag: v23.1.11
+    pullPolicy: IfNotPresent
+
+  auth:
+    username: root
+    password: cockroachpass
+
+  storage:
+    size: 5Gi
+
+  service:
+    type: ClusterIP
+    sqlPort: 26257
+    httpPort: 8080
+
+  nodePort:
+    enabled: true
+    sql: 31257
+    http: 38080
