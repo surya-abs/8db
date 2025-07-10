@@ -7,9 +7,10 @@ metadata:
     app: influxdb
 spec:
   type: ClusterIP
-  app: influxdb
   ports:
-    - port: 8086
+    - port: 80
       targetPort: 8086
       name: api
+  selector:
+    app: influxdb
 {{- end }}

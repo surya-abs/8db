@@ -1,0 +1,23 @@
+tigerdata:
+  enabled: true
+
+  image:
+    repository: timescale/timescaledb-ha
+    tag: pg14.11-ts2.14.2-p1
+    pullPolicy: IfNotPresent
+
+  auth:
+    username: postgres
+    password: tigerdata
+    database: timescaledb
+
+  storage:
+    size: 5Gi
+
+  service:
+    type: ClusterIP
+    port: 5432  # PostgreSQL port
+
+  nodePort:
+    enabled: true
+    port: 31432

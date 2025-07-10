@@ -1,0 +1,16 @@
+{{- if .Values.tigerdata.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: tigerdata
+  labels:
+    app: tigerdata
+spec:
+  type: ClusterIP
+  selector:
+    app: tigerdata
+  ports:
+    - port: 5432
+      targetPort: 5432
+      name: pg
+{{- end }}

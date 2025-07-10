@@ -1,0 +1,40 @@
+{{- if .Values.tigerdata.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: tigerdata
+  labels:
+    app: tigerdata
+spec:
+  serviceName: tigerdata
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tigerdata
+  template:
+    metadata:
+      labels:
+        app: tigerdata
+    spec:
+      containers:
+        - name: tigerdata
+          image: "{{ .Values.tigerdata.image.repository }}:{{ .Values.tigerdata.image.tag }}"
+          imagePullPolicy: {{ .Values.tigerdata.image.pullPolicy }}
+          ports:
+            - containerPort: 5432
+              name: pg
+          envFrom:
+            - secretRef:
+                name: tigerdata-secret
+          volumeMounts:
+            - name: tigerdata-data
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: tigerdata-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.tigerdata.storage.size }}
+{{- end }}
