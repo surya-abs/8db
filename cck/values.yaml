@@ -21,4 +21,4 @@ cockroachdb:
   nodePort:
     enabled: true
     sql: 31257
-    http: 38080
+    http: 32080
