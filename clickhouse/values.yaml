@@ -1,0 +1,24 @@
+clickhouse:
+  enabled: true
+
+  image:
+    repository: clickhouse/clickhouse-server
+    tag: 24.1
+    pullPolicy: IfNotPresent
+
+  auth:
+    username: default
+    password: clickhouse
+
+  storage:
+    size: 5Gi
+
+  service:
+    type: ClusterIP
+    port: 9000     # native TCP port
+    httpPort: 8123 # HTTP interface
+
+  nodePort:
+    enabled: true
+    tcp: 30900
+    http: 30812
