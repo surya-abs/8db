@@ -3,7 +3,7 @@ tigerdata:
 
   image:
     repository: timescale/timescaledb-ha
-    tag: pg14.11-ts2.14.2-p1
+    tag: 2.14.2-pg14
     pullPolicy: IfNotPresent
 
   auth:
