@@ -1,0 +1,24 @@
+neo4j:
+  enabled: true
+
+  image:
+    repository: neo4j
+    tag: 5.19.0
+    pullPolicy: IfNotPresent
+
+  auth:
+    username: neo4j
+    password: secretpassword
+
+  storage:
+    size: 5Gi
+
+  service:
+    type: ClusterIP
+    port: 7687
+    httpPort: 7474
+
+  nodePort:
+    enabled: true
+    bolt: 32087
+    http: 32074

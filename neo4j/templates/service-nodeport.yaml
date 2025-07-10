@@ -1,0 +1,21 @@
+{{- if and .Values.neo4j.enabled .Values.neo4j.nodePort.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: neo4j-nodeport
+  labels:
+    app: neo4j
+spec:
+  type: NodePort
+  selector:
+    app: neo4j
+  ports:
+    - name: bolt
+      port: 7687
+      targetPort: 7687
+      nodePort: {{ .Values.neo4j.nodePort.bolt }}
+    - name: http
+      port: 7474
+      targetPort: 7474
+      nodePort: {{ .Values.neo4j.nodePort.http }}
+{{- end }}
