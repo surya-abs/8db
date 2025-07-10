@@ -1,0 +1,15 @@
+{{- if and .Values.meilisearch.enabled .Values.meilisearch.nodePortService.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: meilisearch-nodeport
+spec:
+  selector:
+    app: meilisearch
+  type: NodePort
+  ports:
+    - name: http
+      port: 7700
+      targetPort: 7700
+      nodePort: {{ .Values.meilisearch.nodePortService.nodePort }}
+{{- end }}

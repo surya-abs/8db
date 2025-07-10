@@ -1,0 +1,14 @@
+{{- if .Values.meilisearch.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: meilisearch
+spec:
+  selector:
+    app: meilisearch
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 7700
+      targetPort: 7700
+{{- end }}

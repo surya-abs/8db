@@ -1,0 +1,21 @@
+meilisearch:
+  enabled: true
+
+  image:
+    repository: getmeili/meilisearch
+    tag: v1.7.3
+    pullPolicy: IfNotPresent
+
+  service:
+    port: 7700
+    type: ClusterIP
+
+  nodePortService:
+    enabled: true
+    nodePort: 30700
+
+  auth:
+    masterKey: your-super-secret-master-key
+
+  storage:
+    size: 5Gi
