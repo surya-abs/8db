@@ -3,7 +3,7 @@ entries:
   clickhouse:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-10T12:27:25.49641012+05:30"
+    created: "2025-07-10T12:39:24.085607887+05:30"
     description: A Helm chart for clickhouse
     digest: 1e57bebf960d97e80dcfd3c0715d930d79625b2098563065e46fc0b3892d9805
     name: clickhouse
@@ -14,7 +14,7 @@ entries:
   dragonfly:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-10T12:27:25.496665477+05:30"
+    created: "2025-07-10T12:39:24.085875288+05:30"
     description: A Helm chart for Kubernetes
     digest: 9f8d4e43bd023467ff660433c093a024d819ba26221325b9689292df8628cd67
     name: dragonfly
@@ -25,7 +25,7 @@ entries:
   elasticsearch:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-10T12:27:25.496901667+05:30"
+    created: "2025-07-10T12:39:24.086105159+05:30"
     description: A Helm chart for Elastic Search
     digest: 5ee38d59de25375cfd51907dfcef07307b77aeb8170e80bc4b8ef2a8d397943f
     name: elasticsearch
@@ -33,10 +33,21 @@ entries:
     urls:
     - https://surya-abs.github.io/8db/docs/elasticsearch-0.1.0.tgz
     version: 0.1.0
+  influx:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-10T12:39:24.086390945+05:30"
+    description: A Helm chart for InfluxDB
+    digest: 35933f5d424acf90ec045f6fe788e2f93c672bcaea9d21f31ed637b2e15ae780
+    name: influx
+    type: application
+    urls:
+    - https://surya-abs.github.io/8db/docs/influx-0.1.0.tgz
+    version: 0.1.0
   mariadb:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-10T12:27:25.497123944+05:30"
+    created: "2025-07-10T12:39:24.086674669+05:30"
     description: A Helm chart for MariaDB
     digest: 94ae7fe535f145d241e9167f2019d8e365b0e5b541700b9e5d571e50e7812461
     name: mariadb
@@ -47,7 +58,7 @@ entries:
   memcached:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-10T12:27:25.49736979+05:30"
+    created: "2025-07-10T12:39:24.086887178+05:30"
     description: A Helm chart for Kubernetes
     digest: 54d895c85b6429673c3bb42f4319c32db47643070c2c9bf2a3d233eb4d139091
     name: memcached
@@ -58,7 +69,7 @@ entries:
   mongodb:
   - apiVersion: v2
     appVersion: "6.0"
-    created: "2025-07-10T12:27:25.497653846+05:30"
+    created: "2025-07-10T12:39:24.087135517+05:30"
     description: A Helm chart for MongoDB
     digest: 7b01cffb82e059a308c19aa73e7014dfb5b29ac42ff20f117ee02122329ba9d1
     icon: https://www.mongodb.com/assets/images/global/leaf.png
@@ -70,7 +81,7 @@ entries:
   mssql:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-10T12:27:25.497920815+05:30"
+    created: "2025-07-10T12:39:24.0873982+05:30"
     description: A Helm chart for Kubernetes
     digest: 43f151ad6ff82a10b5bc86c32975ea6f34f6979ba2720fe8319f3d9ef4c31a05
     name: mssql
@@ -81,7 +92,7 @@ entries:
   mysql:
   - apiVersion: v2
     appVersion: "8.0"
-    created: "2025-07-10T12:27:25.49834871+05:30"
+    created: "2025-07-10T12:39:24.087656291+05:30"
     description: A Helm chart for MySQL
     digest: f5408077b52b78a773845de63b7925a666cfdae2948e659f0d95d2df3a957527
     icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
@@ -93,7 +104,7 @@ entries:
   neo4j:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-10T12:27:25.498620278+05:30"
+    created: "2025-07-10T12:39:24.087905962+05:30"
     description: A Helm chart for Neo4j
     digest: 23d279e4a19f67b536477125ee47abdba237492de4cd348f7c00fbe2e2b9e08a
     name: neo4j
@@ -104,7 +115,7 @@ entries:
   oracle:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-10T12:27:25.49921798+05:30"
+    created: "2025-07-10T12:39:24.088152254+05:30"
     description: A Helm chart for Oracle
     digest: c2c7393726e2d7cdc2f304616d878c15e1b0201ec427d997a65aabe669ffde26
     name: oracle
@@ -115,7 +126,7 @@ entries:
   postgres:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-10T12:27:25.499891771+05:30"
+    created: "2025-07-10T12:39:24.088397126+05:30"
     description: A Helm chart for Kubernetes
     digest: aa4a9e4684ac57b3e9441bc222896afa0e9a538348225d990263b2f323e1710d
     name: postgres
@@ -126,7 +137,7 @@ entries:
   redis:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-10T12:27:25.500180101+05:30"
+    created: "2025-07-10T12:39:24.088624662+05:30"
     description: A Helm chart for Redis
     digest: 12f21859e849ce77dc09df264a430964b9e68602296a89881eabb47b52f802ab
     name: redis
@@ -134,4 +145,4 @@ entries:
     urls:
     - https://surya-abs.github.io/8db/docs/redis-0.1.0.tgz
     version: 0.1.0
-generated: "2025-07-10T12:27:25.495980002+05:30"
+generated: "2025-07-10T12:39:24.085170594+05:30"

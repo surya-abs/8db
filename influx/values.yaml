@@ -1,0 +1,25 @@
+influxdb:
+  enabled: true
+
+  image:
+    repository: influxdb
+    tag: 2.7
+    pullPolicy: IfNotPresent
+
+  auth:
+    username: admin
+    password: influxpass
+    token: mysecrettoken
+    org: myorg
+    bucket: mybucket
+
+  storage:
+    size: 5Gi
+
+  service:
+    type: ClusterIP
+    port: 8086  # InfluxDB API
+
+  nodePort:
+    enabled: true
+    port: 32086
