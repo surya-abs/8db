@@ -2,8 +2,8 @@ tigerdata:
   enabled: true
 
   image:
-    repository: timescale/timescaledb-ha
-    tag: 2.14.2-pg14
+    repository: timescale/timescaledb
+    tag: 2.14.2-pg16
     pullPolicy: IfNotPresent
 
   auth:
