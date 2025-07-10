@@ -4,6 +4,7 @@ Dragonfly
 ElasticSearch
 InfluxDB
 MariaDB
+Meilisearch
 MongoDB
 MSSQL
 MySQL
@@ -11,5 +12,7 @@ Neo4j
 OracleDB
 Postgres
 Qdrant
+Quest
 Redis
 Tigerdata
+Typesense

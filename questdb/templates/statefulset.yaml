@@ -1,0 +1,44 @@
+{{- if .Values.questdb.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: questdb
+  labels:
+    app: questdb
+spec:
+  serviceName: questdb
+  replicas: 1
+  selector:
+    matchLabels:
+      app: questdb
+  template:
+    metadata:
+      labels:
+        app: questdb
+    spec:
+      containers:
+        - name: questdb
+          image: "{{ .Values.questdb.image.repository }}:{{ .Values.questdb.image.tag }}"
+          imagePullPolicy: {{ .Values.questdb.image.pullPolicy }}
+          ports:
+            - containerPort: 9000   # HTTP Admin Web UI
+              name: http
+            - containerPort: 8812   # PG Wire
+              name: pgwire
+            - containerPort: 9009   # Influx Line Protocol
+              name: ilp
+          envFrom:
+            - secretRef:
+                name: questdb-secret
+          volumeMounts:
+            - name: questdb-data
+              mountPath: /root/.questdb/db
+  volumeClaimTemplates:
+    - metadata:
+        name: questdb-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.questdb.storage.size }}
+{{- end }}

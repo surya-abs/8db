@@ -1,0 +1,23 @@
+questdb:
+  enabled: true
+
+  image:
+    repository: questdb/questdb
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  service:
+    port: 9000
+    type: ClusterIP
+
+  nodePortService:
+    enabled: true
+    nodePort: 30900
+
+  auth:
+    # Optional: Set to enable basic auth (QuestDB doesn't support auth by default for Web UI)
+    adminUser: "admin"
+    adminPassword: "your-password"
+
+  storage:
+    size: 5Gi

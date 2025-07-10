@@ -1,0 +1,15 @@
+{{- if and .Values.questdb.enabled .Values.questdb.nodePortService.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: questdb-nodeport
+spec:
+  selector:
+    app: questdb
+  type: NodePort
+  ports:
+    - name: http
+      port: 9000
+      targetPort: 9000
+      nodePort: {{ .Values.questdb.nodePortService.nodePort }}
+{{- end }}
