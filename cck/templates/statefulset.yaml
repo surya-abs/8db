@@ -21,7 +21,7 @@ spec:
           image: "{{ .Values.cockroachdb.image.repository }}:{{ .Values.cockroachdb.image.tag }}"
           imagePullPolicy: {{ .Values.cockroachdb.image.pullPolicy }}
           command:
-            - "/cockroach"
+            - "/cockroach/cockroach"  # ✅ Fix: full path to binary
             - "start-single-node"
             - "--insecure"
             - "--http-addr=0.0.0.0:8080"
