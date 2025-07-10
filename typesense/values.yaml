@@ -1,0 +1,20 @@
+typesense:
+  enabled: true
+  image:
+    repository: typesense/typesense
+    tag: 0.25.2
+    pullPolicy: IfNotPresent
+
+  service:
+    port: 8108
+    type: ClusterIP
+
+  nodePortService:
+    enabled: true
+    nodePort: 30108
+
+  auth:
+    apiKey: your-secret-api-key
+
+  storage:
+    size: 5Gi

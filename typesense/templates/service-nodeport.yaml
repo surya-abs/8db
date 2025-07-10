@@ -1,0 +1,15 @@
+{{- if and .Values.typesense.enabled .Values.typesense.nodePortService.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: typesense-nodeport
+spec:
+  selector:
+    app: typesense
+  type: NodePort
+  ports:
+    - name: http
+      port: 8108
+      targetPort: 8108
+      nodePort: {{ .Values.typesense.nodePortService.nodePort }}
+{{- end }}

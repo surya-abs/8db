@@ -1,0 +1,43 @@
+{{- if .Values.typesense.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: typesense
+  labels:
+    app: typesense
+spec:
+  serviceName: typesense
+  replicas: 1
+  selector:
+    matchLabels:
+      app: typesense
+  template:
+    metadata:
+      labels:
+        app: typesense
+    spec:
+      containers:
+        - name: typesense
+          image: "{{ .Values.typesense.image.repository }}:{{ .Values.typesense.image.tag }}"
+          imagePullPolicy: {{ .Values.typesense.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.typesense.service.port }}
+              name: http
+          env:
+            - name: TYPESENSE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: typesense-secret
+                  key: TYPESENSE_API_KEY
+          volumeMounts:
+            - name: typesense-data
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: typesense-data
+      spec:
+        accessModes: ["ReadWriteOnce"]        
+        resources:
+          requests:
+            storage: {{ .Values.typesense.storage.size }}
+{{- end }}

@@ -1,0 +1,14 @@
+{{- if .Values.typesense.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: typesense
+spec:
+  selector:
+    app: typesense
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8108
+      targetPort: 8108
+{{- end }}
