@@ -1,0 +1,17 @@
+{{- if and .Values.qdrant.enabled .Values.qdrant.nodePort.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: qdrant-nodeport
+  labels:
+    app: qdrant
+spec:
+  type: NodePort
+  selector:
+    app: qdrant
+  ports:
+    - port: 6333
+      targetPort: 6333
+      nodePort: {{ .Values.qdrant.nodePort.port }}
+      name: http
+{{- end }}

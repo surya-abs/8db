@@ -1,0 +1,21 @@
+qdrant:
+  enabled: true
+
+  image:
+    repository: qdrant/qdrant
+    tag: v1.9.1
+    pullPolicy: IfNotPresent
+
+  auth:
+    apiKey: supersecretapikey  # Optional – only needed if authentication enabled
+
+  storage:
+    size: 5Gi
+
+  service:
+    type: ClusterIP
+    port: 6333
+
+  nodePort:
+    enabled: true
+    port: 31333
