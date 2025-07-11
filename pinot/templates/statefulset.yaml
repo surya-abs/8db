@@ -29,12 +29,24 @@ spec:
             - name: pinot-data
               mountPath: /var/pinot
           env:
+            - name: MY_NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: JAVA_OPTS
               value: "-Xms512M -Xmx1G"
             - name: PINOT_COMPONENT
               value: "Controller"
             - name: CLUSTER_NAME
               value: "pinot-cluster"
+            - name: CONFIG_ALLOW_ZKLESS
+              value: "true"
+            - name: CONTROLLER_MODE
+              value: "helix-less"
+            - name: CONTROLLER_PORT
+              value: "{{ .Values.pinot.controller.port | quote }}"
+            - name: CONTROLLER_HOST
+              value: "$(MY_NODE_IP)"
             {{- if .Values.pinot.auth.enabled }}
             - name: CONTROLLER_USER
               valueFrom:
@@ -52,6 +64,7 @@ spec:
         name: pinot-data
       spec:
         accessModes: ["ReadWriteOnce"]
+        storageClassName: {{ .Values.pinot.storage.storageClassName }}
         resources:
           requests:
             storage: {{ .Values.pinot.storage.size }}
