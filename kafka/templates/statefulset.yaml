@@ -26,6 +26,10 @@ spec:
             - containerPort: 9093
               name: controller
           env:
+            - name: MY_NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: KAFKA_KRAFT_MODE
               value: "true"
             - name: KAFKA_CFG_NODE_ID
@@ -39,7 +43,7 @@ spec:
             - name: KAFKA_CFG_LISTENERS
               value: "PLAINTEXT://:9092,CONTROLLER://:9093"
             - name: KAFKA_CFG_ADVERTISED_LISTENERS
-              value: "PLAINTEXT://kafka.k.svc.cluster.local:9092"
+              value: "PLAINTEXT://$(MY_NODE_IP):31092"
             - name: KAFKA_CFG_CONTROLLER_LISTENER_NAMES
               value: "CONTROLLER"
             - name: KAFKA_CFG_INTER_BROKER_LISTENER_NAME
