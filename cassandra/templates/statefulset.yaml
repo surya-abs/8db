@@ -1,0 +1,55 @@
+{{- if .Values.cassandra.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cassandra
+  labels:
+    app: cassandra
+spec:
+  serviceName: cassandra
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cassandra
+  template:
+    metadata:
+      labels:
+        app: cassandra
+    spec:
+      containers:
+        - name: cassandra
+          image: "{{ .Values.cassandra.image.repository }}:{{ .Values.cassandra.image.tag }}"
+          imagePullPolicy: {{ .Values.cassandra.image.pullPolicy }}
+          ports:
+            - name: cql
+              containerPort: 9042
+            - name: intra
+              containerPort: 7000
+            - name: jmx
+              containerPort: 7199
+          env:
+            - name: CASSANDRA_CLUSTER_NAME
+              value: {{ .Values.cassandra.cluster.name | quote }}
+            - name: CASSANDRA_DC
+              value: {{ .Values.cassandra.cluster.datacenter | quote }}
+            - name: CASSANDRA_RACK
+              value: {{ .Values.cassandra.cluster.rack | quote }}
+            - name: CASSANDRA_AUTHENTICATOR
+              value: PasswordAuthenticator
+            - name: CASSANDRA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cassandra-secret
+                  key: CASSANDRA_PASSWORD
+          volumeMounts:
+            - name: cassandra-data
+              mountPath: /var/lib/cassandra
+  volumeClaimTemplates:
+    - metadata:
+        name: cassandra-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.cassandra.storage.size }}
+{{- end }}

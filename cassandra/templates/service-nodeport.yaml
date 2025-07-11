@@ -1,0 +1,15 @@
+{{- if and .Values.cassandra.enabled .Values.cassandra.nodePortService.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: cassandra-nodeport
+spec:
+  selector:
+    app: cassandra
+  type: NodePort
+  ports:
+    - name: cql
+      port: 9042
+      targetPort: 9042
+      nodePort: {{ .Values.cassandra.nodePortService.ports.cql }}
+{{- end }}

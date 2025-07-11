@@ -14,5 +14,6 @@ Postgres
 Qdrant
 Quest
 Redis
+ScyllaDB
 Tigerdata
 Typesense
