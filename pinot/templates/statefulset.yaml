@@ -47,7 +47,6 @@ spec:
               value: "{{ .Values.pinot.controller.port | quote }}"
             - name: CONTROLLER_HOST
               value: "$(MY_NODE_IP)"
-            {{- if .Values.pinot.auth.enabled }}
             - name: CONTROLLER_USER
               valueFrom:
                 secretKeyRef:
@@ -58,7 +57,7 @@ spec:
                 secretKeyRef:
                   name: pinot-secret
                   key: CONTROLLER_PASSWORD
-            {{- end }}
+
   volumeClaimTemplates:
     - metadata:
         name: pinot-data
