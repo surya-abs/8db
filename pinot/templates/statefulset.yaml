@@ -19,9 +19,11 @@ spec:
       containers:
         - name: pinot
           image: "{{ .Values.pinot.image.repository }}:{{ .Values.pinot.image.tag }}"
-          imagePullPolicy: {{ .Values.pinot.image.pullPolicy }}
-          command: ["/opt/pinot/bin/pinot-admin.sh"]
-          args: ["StartController"]
+          imagePullPolicy: "{{ .Values.pinot.image.pullPolicy }}"
+          command:
+            - "/opt/pinot/bin/pinot-admin.sh"
+          args:
+            - "StartController"
           ports:
             - containerPort: {{ .Values.pinot.controller.port }}
               name: controller
@@ -40,7 +42,7 @@ spec:
             - name: CLUSTER_NAME
               value: "pinot-cluster"
             - name: CONFIG_ALLOW_ZKLESS
-              value: "true"
+              value: true
             - name: CONTROLLER_MODE
               value: "helix-less"
             - name: CONTROLLER_PORT
