@@ -1,0 +1,27 @@
+strimzi:
+  enabled: true
+
+  image:
+    repository: strimzi/kafka
+    tag: 0.41.0-kafka-3.6.1
+    pullPolicy: IfNotPresent
+
+  broker:
+    replicas: 1
+    storage:
+      size: 10Gi
+      storageClassName: standard
+
+  service:
+    kafkaPort: 9092
+    internalPort: 9093
+    type: ClusterIP
+
+  nodePortService:
+    enabled: true
+    ports:
+      kafka: 31092
+
+  auth:
+    username: admin
+    password: adminpass

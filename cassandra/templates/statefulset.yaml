@@ -36,20 +36,11 @@ spec:
               value: {{ .Values.cassandra.cluster.rack | quote }}
             - name: CASSANDRA_AUTHENTICATOR
               value: PasswordAuthenticator
-            - name: CASSANDRA_AUTHORIZER
-              value: CassandraAuthorizer
-            - name: CASSANDRA_USER
-              valueFrom:
-                secretKeyRef:
-                  name: cassandra-secret
-                  key: CASSANDRA_USER
             - name: CASSANDRA_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: cassandra-secret
                   key: CASSANDRA_PASSWORD
-            - name: CASSANDRA_PASSWORD_SEEDER
-              value: "yes"
           volumeMounts:
             - name: cassandra-data
               mountPath: /var/lib/cassandra

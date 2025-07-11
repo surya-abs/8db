@@ -1,0 +1,14 @@
+{{- if .Values.strimzi.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka
+spec:
+  type: {{ .Values.strimzi.service.type }}
+  ports:
+    - name: kafka
+      port: 9092
+      targetPort: 9092
+  selector:
+    app: kafka
+{{- end }}

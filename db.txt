@@ -1,10 +1,14 @@
+ArangoDB
+Cassandra
 CockroachDB
 Clickhouse
+DuckDB
 Dragonfly
 ElasticSearch
 InfluxDB
 MariaDB
 Meilisearch
+Milvus
 MongoDB
 MSSQL
 MySQL
@@ -17,3 +21,5 @@ Redis
 ScyllaDB
 Tigerdata
 Typesense
+Pinot
+>Kafka
