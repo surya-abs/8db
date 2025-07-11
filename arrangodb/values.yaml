@@ -1,0 +1,16 @@
+arangodb:
+  enabled: true
+  image:
+    repository: arangodb/arangodb
+    tag: 3.11.2
+    pullPolicy: IfNotPresent
+
+  root:
+    password: mySuperSecretPassword
+
+  storage:
+    size: 5Gi
+
+  service:
+    port: 8529
+    nodePort: 31529

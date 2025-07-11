@@ -1,0 +1,14 @@
+{{- if .Values.arangodb.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: arangodb
+spec:
+  selector:
+    app: arangodb
+  ports:
+    - port: 8529
+      targetPort: 8529
+      protocol: TCP
+  type: ClusterIP
+{{- end }}

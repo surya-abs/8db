@@ -1,0 +1,42 @@
+{{- if .Values.arangodb.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: arangodb
+  labels:
+    app: arangodb
+spec:
+  serviceName: arangodb
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arangodb
+  template:
+    metadata:
+      labels:
+        app: arangodb
+    spec:
+      containers:
+        - name: arangodb
+          image: "{{ .Values.arangodb.image.repository }}:{{ .Values.arangodb.image.tag }}"
+          imagePullPolicy: {{ .Values.arangodb.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.arangodb.service.port }}
+          env:
+            - name: ARANGO_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: arangodb-secret
+                  key: ARANGO_ROOT_PASSWORD
+          volumeMounts:
+            - name: arangodb-data
+              mountPath: /var/lib/arangodb3
+  volumeClaimTemplates:
+    - metadata:
+        name: arangodb-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.arangodb.storage.size }}
+{{- end }}
