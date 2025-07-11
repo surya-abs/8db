@@ -1,4 +1,4 @@
-{{- if and .Values.strimzi.enabled .Values.strimzi.nodePortService.enabled }}
+{{- if and .Values.kafka.enabled .Values.kafka.nodePortService.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -11,5 +11,5 @@ spec:
     - name: kafka
       port: 9092
       targetPort: 9092
-      nodePort: {{ .Values.strimzi.nodePortService.ports.kafka }}
+      nodePort: {{ .Values.kafka.nodePortService.ports.kafka }}
 {{- end }}

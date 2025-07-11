@@ -1,4 +1,4 @@
-{{- if .Values.strimzi.enabled }}
+{{- if .Values.kafka.enabled }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -18,8 +18,8 @@ spec:
     spec:
       containers:
         - name: kafka
-          image: "{{ .Values.strimzi.image.repository }}:{{ .Values.strimzi.image.tag }}"
-          imagePullPolicy: {{ .Values.strimzi.image.pullPolicy }}
+          image: "{{ .Values.kafka.image.repository }}:{{ .Values.kafka.image.tag }}"
+          imagePullPolicy: {{ .Values.kafka.image.pullPolicy }}
           ports:
             - containerPort: 9092
               name: kafka
@@ -48,6 +48,9 @@ spec:
               value: "CONTROLLER"
             - name: KAFKA_CFG_INTER_BROKER_LISTENER_NAME
               value: "PLAINTEXT"
+          envFrom:
+            - secretRef:
+                name: kafka-secret
           volumeMounts:
             - name: kafka-data
               mountPath: /bitnami/kafka
@@ -56,8 +59,8 @@ spec:
         name: kafka-data
       spec:
         accessModes: ["ReadWriteOnce"]
-        storageClassName: {{ .Values.strimzi.broker.storage.storageClassName }}
+        storageClassName: {{ .Values.kafka.broker.storage.storageClassName }}
         resources:
           requests:
-            storage: {{ .Values.strimzi.broker.storage.size }}
+            storage: {{ .Values.kafka.broker.storage.size }}
 {{- end }}

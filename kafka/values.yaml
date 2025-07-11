@@ -1,4 +1,4 @@
-strimzi:
+kafka:
   enabled: true
 
   image:
