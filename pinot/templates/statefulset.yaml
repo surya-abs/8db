@@ -20,8 +20,10 @@ spec:
         - name: pinot
           image: "{{ .Values.pinot.image.repository }}:{{ .Values.pinot.image.tag }}"
           imagePullPolicy: {{ .Values.pinot.image.pullPolicy }}
+          command: ["/opt/pinot/bin/pinot-admin.sh"]
+          args: ["StartController"]
           ports:
-            - containerPort: 9000
+            - containerPort: {{ .Values.pinot.controller.port }}
               name: controller
           volumeMounts:
             - name: pinot-data
