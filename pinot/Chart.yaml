@@ -1,6 +1,6 @@
 apiVersion: v2
 name: pinot
-description: A Helm chart for Pino
+description: A Helm chart for Pinot
 
 # A chart can be either an 'application' or a 'library' chart.
 #

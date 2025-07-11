@@ -1,15 +1,20 @@
-{{- if .Values.pinot.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
   name: pinot
+  labels:
+    app: pinot
 spec:
+  type: {{ .Values.service.type }}
+  ports:
+  - port: {{ .Values.service.port }}
+    targetPort: 9000
+    name: controller
+  - port: 8099
+    targetPort: 8099
+    name: broker
+  - port: 8098
+    targetPort: 8098
+    name: server
   selector:
     app: pinot
-  ports:
-    - port: 9000
-      targetPort: 9000
-      protocol: TCP
-      name: controller
-  type: ClusterIP
-{{- end }}

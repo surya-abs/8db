@@ -1,16 +1,17 @@
-{{- if .Values.pinot.enabled }}
+{{- if .Values.nodePort.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
   name: pinot-nodeport
+  labels:
+    app: pinot
 spec:
+  type: NodePort
+  ports:
+  - port: {{ .Values.service.port }}
+    targetPort: 9000
+    nodePort: {{ .Values.nodePort.port }}
+    name: controller
   selector:
     app: pinot
-  ports:
-    - port: 9000
-      targetPort: 9000
-      nodePort: {{ .Values.pinot.controller.nodePort }}
-      protocol: TCP
-      name: controller
-  type: NodePort
 {{- end }}

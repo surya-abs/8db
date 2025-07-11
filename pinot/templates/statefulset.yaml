@@ -6,8 +6,8 @@ metadata:
   labels:
     app: pinot
 spec:
-  serviceName: pinot-headless
-  replicas: 1
+  serviceName: pinot
+  replicas: {{ .Values.pinot.replicas }}
   selector:
     matchLabels:
       app: pinot
@@ -17,55 +17,40 @@ spec:
         app: pinot
     spec:
       containers:
-        - name: pinot
-          image: "{{ .Values.pinot.image.repository }}:{{ .Values.pinot.image.tag }}"
-          imagePullPolicy: "{{ .Values.pinot.image.pullPolicy }}"
-          command:
-            - "/opt/pinot/bin/pinot-admin.sh"
-          args:
-            - "StartController"
-          ports:
-            - containerPort: {{ .Values.pinot.controller.port }}
-              name: controller
-          volumeMounts:
-            - name: pinot-data
-              mountPath: /var/pinot
-          env:
-            - name: MY_NODE_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: JAVA_OPTS
-              value: "-Xms512M -Xmx1G"
-            - name: PINOT_COMPONENT
-              value: "Controller"
-            - name: CLUSTER_NAME
-              value: "pinot-cluster"
-            - name: CONFIG_ALLOW_ZKLESS
-              value: "true"
-            - name: CONTROLLER_MODE
-              value: "helix-less"
-            - name: CONTROLLER_PORT
-              value: "{{ .Values.pinot.controller.port | quote }}"
-            - name: CONTROLLER_HOST
-              value: "$(MY_NODE_IP)"
-            - name: CONTROLLER_USER
-              valueFrom:
-                secretKeyRef:
-                  name: pinot-secret
-                  key: CONTROLLER_USER
-            - name: CONTROLLER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pinot-secret
-                  key: CONTROLLER_PASSWORD
-  volumeClaimTemplates:
-    - metadata:
-        name: pinot-data
-      spec:
-        accessModes: 
-          - ReadWriteOnce
+      - name: pinot
+        image: "{{ .Values.pinot.image.repository }}:{{ .Values.pinot.image.tag }}"
+        imagePullPolicy: {{ .Values.pinot.image.pullPolicy }}
+        ports:
+        - containerPort: 9000
+          name: controller
+        - containerPort: 8099
+          name: broker
+        - containerPort: 8098
+          name: server
+        command:
+        - sh
+        - -c
+        - |
+          # Start Pinot in Helix Mode (single process with all components)
+          bin/pinot-admin.sh QuickStart \
+            -type hybrid \
+            -dataDir /var/pinot/data
         resources:
-          requests:
-            storage: {{ .Values.pinot.storage.size }}
+          {{- toYaml .Values.pinot.resources | nindent 10 }}
+        volumeMounts:
+        - name: pinot-storage
+          mountPath: /var/pinot/data
+        envFrom:
+        - secretRef:
+            name: pinot-secret
+  volumeClaimTemplates:
+  - metadata:
+      name: pinot-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      {{- if .Values.pinot.storage.storageClass }}
+      {{- end }}
+      resources:
+        requests:
+          storage: {{ .Values.pinot.storage.size }}
 {{- end }}
