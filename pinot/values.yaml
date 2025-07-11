@@ -1,0 +1,18 @@
+pinot:
+  enabled: true
+  image:
+    repository: apachepinot/pinot
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  controller:
+    port: 9000
+    nodePort: 31900
+
+  storage:
+    size: 5Gi
+
+  auth:
+    enabled: true
+    username: admin
+    password: pinot123

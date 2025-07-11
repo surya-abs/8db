@@ -1,0 +1,56 @@
+{{- if .Values.pinot.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: pinot
+  labels:
+    app: pinot
+spec:
+  serviceName: pinot-headless
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pinot
+  template:
+    metadata:
+      labels:
+        app: pinot
+    spec:
+      containers:
+        - name: pinot
+          image: "{{ .Values.pinot.image.repository }}:{{ .Values.pinot.image.tag }}"
+          imagePullPolicy: {{ .Values.pinot.image.pullPolicy }}
+          ports:
+            - containerPort: 9000
+              name: controller
+          volumeMounts:
+            - name: pinot-data
+              mountPath: /var/pinot
+          env:
+            - name: JAVA_OPTS
+              value: "-Xms512M -Xmx1G"
+            - name: PINOT_COMPONENT
+              value: "Controller"
+            - name: CLUSTER_NAME
+              value: "pinot-cluster"
+            {{- if .Values.pinot.auth.enabled }}
+            - name: CONTROLLER_USER
+              valueFrom:
+                secretKeyRef:
+                  name: pinot-secret
+                  key: CONTROLLER_USER
+            - name: CONTROLLER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pinot-secret
+                  key: CONTROLLER_PASSWORD
+            {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: pinot-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.pinot.storage.size }}
+{{- end }}
