@@ -1,0 +1,48 @@
+{{- if .Values.scylladb.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: scylladb
+  labels:
+    app: scylladb
+spec:
+  serviceName: scylladb
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scylladb
+  template:
+    metadata:
+      labels:
+        app: scylladb
+    spec:
+      containers:
+        - name: scylladb
+          image: "{{ .Values.scylladb.image.repository }}:{{ .Values.scylladb.image.tag }}"
+          imagePullPolicy: {{ .Values.scylladb.image.pullPolicy }}
+          ports:
+            - name: cql
+              containerPort: 9042
+            - name: thrift
+              containerPort: 9160
+            - name: prometheus
+              containerPort: 9180
+          volumeMounts:
+            - name: scylladb-data
+              mountPath: /var/lib/scylla
+          env:
+            - name: SCYLLA_CLUSTER_NAME
+              value: {{ .Values.scylladb.cluster.name | quote }}
+            - name: SCYLLA_DC
+              value: {{ .Values.scylladb.cluster.datacenter | quote }}
+            - name: SCYLLA_RACK
+              value: {{ .Values.scylladb.cluster.rack | quote }}
+  volumeClaimTemplates:
+    - metadata:
+        name: scylladb-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.scylladb.storage.size }}
+{{- end }}

@@ -1,0 +1,30 @@
+scylladb:
+  enabled: true
+
+  image:
+    repository: scylladb/scylla
+    tag: 5.4.1
+    pullPolicy: IfNotPresent
+
+  service:
+    ports:
+      cql: 9042        # CQL port
+      thrift: 9160     # legacy
+      prometheus: 9180 # metrics
+    type: ClusterIP
+
+  nodePortService:
+    enabled: true
+    ports:
+      cql: 31042
+      prometheus: 31980
+
+  storage:
+    size: 10Gi
+
+
+  # Cluster config
+  cluster:
+    name: scylla-cluster
+    datacenter: dc1
+    rack: rack1

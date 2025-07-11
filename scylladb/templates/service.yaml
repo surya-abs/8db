@@ -1,0 +1,20 @@
+{{- if .Values.scylladb.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: scylladb
+spec:
+  selector:
+    app: scylladb
+  type: {{ .Values.scylladb.service.type }}
+  ports:
+    - name: cql
+      port: 9042
+      targetPort: 9042
+    - name: thrift
+      port: 9160
+      targetPort: 9160
+    - name: prometheus
+      port: 9180
+      targetPort: 9180
+{{- end }}

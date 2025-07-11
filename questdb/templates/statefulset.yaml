@@ -27,9 +27,6 @@ spec:
               name: pgwire
             - containerPort: 9009   # Influx Line Protocol
               name: ilp
-          envFrom:
-            - secretRef:
-                name: questdb-secret
           volumeMounts:
             - name: questdb-data
               mountPath: /root/.questdb/db

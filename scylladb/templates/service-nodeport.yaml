@@ -1,0 +1,19 @@
+{{- if and .Values.scylladb.enabled .Values.scylladb.nodePortService.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: scylladb-nodeport
+spec:
+  selector:
+    app: scylladb
+  type: NodePort
+  ports:
+    - name: cql
+      port: 9042
+      targetPort: 9042
+      nodePort: {{ .Values.scylladb.nodePortService.ports.cql }}
+    - name: prometheus
+      port: 9180
+      targetPort: 9180
+      nodePort: {{ .Values.scylladb.nodePortService.ports.prometheus }}
+{{- end }}
