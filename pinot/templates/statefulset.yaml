@@ -64,7 +64,6 @@ spec:
         name: pinot-data
       spec:
         accessModes: ["ReadWriteOnce"]
-        storageClassName: {{ .Values.pinot.storage.storageClassName }}
         resources:
           requests:
             storage: {{ .Values.pinot.storage.size }}
