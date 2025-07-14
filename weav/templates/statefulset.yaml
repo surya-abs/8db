@@ -1,0 +1,47 @@
+{{- if .Values.weaviate.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: weaviate
+spec:
+  replicas: {{ .Values.weaviate.replicaCount }}
+  selector:
+    matchLabels:
+      app: weaviate
+  serviceName: weaviate
+  template:
+    metadata:
+      labels:
+        app: weaviate
+    spec:
+      containers:
+        - name: weaviate
+          image: "{{ .Values.weaviate.image.repository }}:{{ .Values.weaviate.image.tag }}"
+          imagePullPolicy: {{ .Values.weaviate.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            {{- range .Values.weaviate.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
+            {{- if .Values.weaviate.secret.enabled }}
+            - name: WEAVIATE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.weaviate.secret.name }}
+                  key: WEAVIATE_API_KEY
+            {{- end }}
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/weaviate
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.weaviate.persistence.size }}
+{{- end }}

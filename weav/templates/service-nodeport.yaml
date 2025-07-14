@@ -1,0 +1,16 @@
+{{- if .Values.weaviate.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: weaviate-nodeport
+spec:
+  type: NodePort
+  selector:
+    app: weaviate
+  ports:
+    - port: {{ .Values.weaviate.service.port }}
+      targetPort: 8080
+      nodePort: {{ .Values.weaviate.service.nodePort }}
+      protocol: TCP
+      name: http
+{{- end }}

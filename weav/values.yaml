@@ -1,0 +1,31 @@
+weaviate:
+  enabled: true
+
+  replicaCount: 1
+
+  image:
+    repository: semitechnologies/weaviate
+    tag: 1.24.8
+    pullPolicy: IfNotPresent
+
+  service:
+    port: 8080
+    nodePort: 30080
+
+  persistence:
+    enabled: true
+    size: 5Gi
+
+  env:
+    - name: QUERY_DEFAULTS_LIMIT
+      value: "20"
+    - name: AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED
+      value: "true"
+    - name: PERSISTENCE_DATA_PATH
+      value: "/var/lib/weaviate"
+
+  secret:
+    enabled: true
+    name: weaviate-secret
+    data:
+      WEAVIATE_API_KEY: "supersecretapikey"

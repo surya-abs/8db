@@ -3,7 +3,7 @@ entries:
   arrangodb:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.032235263+05:30"
+    created: "2025-07-14T15:36:44.173490398+05:30"
     description: A Helm chart for ArrangoDB
     digest: 373389cc77300346592b36db592c59f0e56dd1c663681bbcb9f2a1f5367e950c
     name: arrangodb
@@ -14,7 +14,7 @@ entries:
   cassandra:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.032953429+05:30"
+    created: "2025-07-14T15:36:44.176000492+05:30"
     description: A Helm chart for Cassandra
     digest: ea58903faea18b16018730cb1b88b273b95de6c78c8e025088f1cba243de9e48
     name: cassandra
@@ -25,7 +25,7 @@ entries:
   cck:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.033780163+05:30"
+    created: "2025-07-14T15:36:44.179244676+05:30"
     description: A Helm chart for Cockroach
     digest: 50cf4fe55f2f0e1e15f882cb3a9715ab7f39100775adafe17ffc9b7b58a9cb24
     name: cck
@@ -36,7 +36,7 @@ entries:
   chroma:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.034477058+05:30"
+    created: "2025-07-14T15:36:44.182662291+05:30"
     description: A Helm chart for Chroma
     digest: 00389f693aacd8074420f36f0608cd98e659950481108d52400f278addd56544
     name: chroma
@@ -47,7 +47,7 @@ entries:
   clickhouse:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.035329239+05:30"
+    created: "2025-07-14T15:36:44.185057035+05:30"
     description: A Helm chart for clickhouse
     digest: 1e57bebf960d97e80dcfd3c0715d930d79625b2098563065e46fc0b3892d9805
     name: clickhouse
@@ -58,7 +58,7 @@ entries:
   dragonfly:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.035984464+05:30"
+    created: "2025-07-14T15:36:44.186458724+05:30"
     description: A Helm chart for Kubernetes
     digest: 9f8d4e43bd023467ff660433c093a024d819ba26221325b9689292df8628cd67
     name: dragonfly
@@ -69,7 +69,7 @@ entries:
   elasticsearch:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.036619135+05:30"
+    created: "2025-07-14T15:36:44.188219198+05:30"
     description: A Helm chart for Elastic Search
     digest: 5ee38d59de25375cfd51907dfcef07307b77aeb8170e80bc4b8ef2a8d397943f
     name: elasticsearch
@@ -80,7 +80,7 @@ entries:
   influx:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.037219345+05:30"
+    created: "2025-07-14T15:36:44.18969563+05:30"
     description: A Helm chart for InfluxDB
     digest: 48089df6f9d4523687591c48512ccfd61e64aeb1e66e016a019ee3cbcd482890
     name: influx
@@ -91,7 +91,7 @@ entries:
   kafka:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.037914962+05:30"
+    created: "2025-07-14T15:36:44.191604173+05:30"
     description: A Helm chart for Kafka
     digest: 71b1e533a0400e06738595ea78c2e34ca647eff994a13832f5377cecd2fde09b
     name: kafka
@@ -102,7 +102,7 @@ entries:
   mariadb:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.038598432+05:30"
+    created: "2025-07-14T15:36:44.193249895+05:30"
     description: A Helm chart for MariaDB
     digest: 94ae7fe535f145d241e9167f2019d8e365b0e5b541700b9e5d571e50e7812461
     name: mariadb
@@ -113,7 +113,7 @@ entries:
   meilisearch:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.039263787+05:30"
+    created: "2025-07-14T15:36:44.19494978+05:30"
     description: A Helm chart for Meilisearch
     digest: 3e8cb3e8e7090f17355b0f6fa154cbcb36620073820672351cf6f6bc175d89b2
     name: meilisearch
@@ -124,7 +124,7 @@ entries:
   memcached:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.039988764+05:30"
+    created: "2025-07-14T15:36:44.196598777+05:30"
     description: A Helm chart for Kubernetes
     digest: 54d895c85b6429673c3bb42f4319c32db47643070c2c9bf2a3d233eb4d139091
     name: memcached
@@ -135,7 +135,7 @@ entries:
   milvus:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.040995537+05:30"
+    created: "2025-07-14T15:36:44.198895297+05:30"
     description: A Helm chart for Milvus
     digest: 3e34e30dc8f2408a2e355038b407d7771b3838d251d19ca9c2cff8365aefaaa8
     name: milvus
@@ -146,7 +146,7 @@ entries:
   mongodb:
   - apiVersion: v2
     appVersion: "6.0"
-    created: "2025-07-14T14:50:09.04184276+05:30"
+    created: "2025-07-14T15:36:44.200438116+05:30"
     description: A Helm chart for MongoDB
     digest: 7b01cffb82e059a308c19aa73e7014dfb5b29ac42ff20f117ee02122329ba9d1
     icon: https://www.mongodb.com/assets/images/global/leaf.png
@@ -158,7 +158,7 @@ entries:
   mssql:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.042972566+05:30"
+    created: "2025-07-14T15:36:44.201973134+05:30"
     description: A Helm chart for Kubernetes
     digest: 43f151ad6ff82a10b5bc86c32975ea6f34f6979ba2720fe8319f3d9ef4c31a05
     name: mssql
@@ -169,7 +169,7 @@ entries:
   mysql:
   - apiVersion: v2
     appVersion: "8.0"
-    created: "2025-07-14T14:50:09.044987915+05:30"
+    created: "2025-07-14T15:36:44.20327058+05:30"
     description: A Helm chart for MySQL
     digest: f5408077b52b78a773845de63b7925a666cfdae2948e659f0d95d2df3a957527
     icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
@@ -181,7 +181,7 @@ entries:
   neo4j:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.045869498+05:30"
+    created: "2025-07-14T15:36:44.204950449+05:30"
     description: A Helm chart for Neo4j
     digest: 23d279e4a19f67b536477125ee47abdba237492de4cd348f7c00fbe2e2b9e08a
     name: neo4j
@@ -192,7 +192,7 @@ entries:
   oracle:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.04649307+05:30"
+    created: "2025-07-14T15:36:44.207381165+05:30"
     description: A Helm chart for Oracle
     digest: c2c7393726e2d7cdc2f304616d878c15e1b0201ec427d997a65aabe669ffde26
     name: oracle
@@ -203,7 +203,7 @@ entries:
   pinot:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.047158965+05:30"
+    created: "2025-07-14T15:36:44.209288321+05:30"
     description: A Helm chart for Pinot
     digest: 058e53343e078b1a93e1ef7359e32ee414853d0fed6504689b90bf36ebf1d357
     name: pinot
@@ -214,7 +214,7 @@ entries:
   postgres:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.047767485+05:30"
+    created: "2025-07-14T15:36:44.211558331+05:30"
     description: A Helm chart for Kubernetes
     digest: aa4a9e4684ac57b3e9441bc222896afa0e9a538348225d990263b2f323e1710d
     name: postgres
@@ -225,7 +225,7 @@ entries:
   qdrant:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.048383957+05:30"
+    created: "2025-07-14T15:36:44.213172141+05:30"
     description: A Helm chart for Qdrant
     digest: 215c79c51ed5c8e9d6bd8c3ffd97953fb730b2c41ba5159ae9904964d0b8cbda
     name: qdrant
@@ -236,7 +236,7 @@ entries:
   questdb:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.049047657+05:30"
+    created: "2025-07-14T15:36:44.215160689+05:30"
     description: A Helm chart for QuestDB
     digest: 387d328504c2b13c6fe75b682e206b9cc069e3d84d360559da55b8f922b08c9f
     name: questdb
@@ -247,7 +247,7 @@ entries:
   redis:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.049630265+05:30"
+    created: "2025-07-14T15:36:44.218335948+05:30"
     description: A Helm chart for Redis
     digest: 12f21859e849ce77dc09df264a430964b9e68602296a89881eabb47b52f802ab
     name: redis
@@ -258,7 +258,7 @@ entries:
   scylladb:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.050295681+05:30"
+    created: "2025-07-14T15:36:44.221049786+05:30"
     description: A Helm chart for Scylladb
     digest: 279c21876669074704ca874de857ed87cf83b821f5069cd0d35bf65bd65179ad
     name: scylladb
@@ -269,7 +269,7 @@ entries:
   tigerdata:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.05093847+05:30"
+    created: "2025-07-14T15:36:44.223144969+05:30"
     description: A Helm chart for Kubernetes
     digest: 71e0cef8d9cf8434c318905685fe5e1e0835d6b8971bc3a79a23109931818145
     name: tigerdata
@@ -280,7 +280,7 @@ entries:
   typesense:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-07-14T14:50:09.051560145+05:30"
+    created: "2025-07-14T15:36:44.224604153+05:30"
     description: A Helm chart for Typesense
     digest: a5abb111cdea8dc9e2185e4b0d76dee7ec50f46e53381a34dec3b58bbb3d6dbc
     name: typesense
@@ -288,4 +288,15 @@ entries:
     urls:
     - https://surya-abs.github.io/8db/docs/typesense-0.1.0.tgz
     version: 0.1.0
-generated: "2025-07-14T14:50:09.031338234+05:30"
+  weav:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-07-14T15:36:44.22582687+05:30"
+    description: A Helm chart for Kubernetes
+    digest: bb2238d0167ef9cf505d0c512b05ea04c5ad0d79e6ae164b83b066fc282a2e8b
+    name: weav
+    type: application
+    urls:
+    - https://surya-abs.github.io/8db/docs/weav-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-07-14T15:36:44.170333967+05:30"
