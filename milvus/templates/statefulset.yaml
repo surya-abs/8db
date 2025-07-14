@@ -20,6 +20,10 @@ spec:
         - name: milvus
           image: "{{ .Values.milvus.image.repository }}:{{ .Values.milvus.image.tag }}"
           imagePullPolicy: {{ .Values.milvus.image.pullPolicy }}
+          command: ["/tini", "--"]
+          args:
+            - "/milvus-run.sh"
+            - "standalone"
           ports:
             - containerPort: {{ .Values.milvus.service.ports.grpc }}
               name: grpc
