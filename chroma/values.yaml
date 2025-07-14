@@ -1,0 +1,31 @@
+chromadb:
+  enabled: true
+
+  replicaCount: 1
+
+  image:
+    repository: chromadb/chroma
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  service:
+    port: 8000
+    nodePort: 30080
+
+
+
+  persistence:
+    enabled: true
+    size: 1Gi
+
+  env:
+    - name: IS_PERSISTENT
+      value: "true"
+    - name: PERSIST_DIRECTORY
+      value: "/chroma/chroma"
+
+  secret:
+    enabled: true
+    name: chromadb-secret
+    data:
+      CHROMA_API_KEY: "super-secret-api-key"

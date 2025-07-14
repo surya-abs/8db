@@ -1,0 +1,50 @@
+{{- if .Values.chromadb.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: chromadb
+spec:
+  replicas: {{ .Values.chromadb.replicaCount }}
+  serviceName: chromadb
+  selector:
+    matchLabels:
+      app: chromadb
+  template:
+    metadata:
+      labels:
+        app: chromadb
+    spec:
+      containers:
+        - name: chromadb
+          image: "{{ .Values.chromadb.image.repository }}:{{ .Values.chromadb.image.tag }}"
+          imagePullPolicy: {{ .Values.chromadb.image.pullPolicy }}
+          ports:
+            - containerPort: 8000
+              name: http
+          env:
+            {{- range .Values.chromadb.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
+            {{- if .Values.chromadb.secret.enabled }}
+            - name: CHROMA_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.chromadb.secret.name }}
+                  key: CHROMA_API_KEY
+            {{- end }}
+          volumeMounts:
+            - name: data
+              mountPath: /chroma/chroma
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.chromadb.persistence.size }}
+        {{- if .Values.chromadb.persistence.storageClass }}
+        storageClassName: {{ .Values.chromadb.persistence.storageClass }}
+        {{- end }}
+{{- end }}

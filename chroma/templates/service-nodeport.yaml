@@ -1,0 +1,16 @@
+{{- if .Values.chromadb.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: chromadb-nodeport
+spec:
+  type: NodePort
+  ports:
+    - port: {{ .Values.chromadb.service.port }}
+      targetPort: 8000
+      nodePort: {{ .Values.chromadb.service.nodePort }}
+      protocol: TCP
+      name: http
+  selector:
+    app: chromadb
+{{- end }}

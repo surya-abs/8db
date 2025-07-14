@@ -1,0 +1,15 @@
+{{- if .Values.chromadb.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: chromadb
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.chromadb.service.port }}
+      targetPort: 8000
+      protocol: TCP
+      name: http
+  selector:
+    app: chromadb
+{{- end }}
