@@ -19,6 +19,8 @@ spec:
         - name: milvus
           image: "{{ .Values.milvus.image.repository }}:{{ .Values.milvus.image.tag }}"
           imagePullPolicy: {{ .Values.milvus.image.pullPolicy }}
+          command: ["/milvus/tools/run.sh"]
+          args: ["milvus", "standalone"]
           ports:
             - containerPort: 19530
               name: milvus
