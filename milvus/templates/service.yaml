@@ -1,3 +1,4 @@
+{{- if .Values.milvus.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -5,11 +6,17 @@ metadata:
   labels:
     app: milvus
 spec:
-  type: ClusterIP
+  type: {{ .Values.milvus.service.type }}
   ports:
-    - port: 19530
-      targetPort: milvus
-      protocol: TCP
-      name: milvus
+    - port: {{ .Values.milvus.service.ports.grpc }}
+      targetPort: grpc
+      name: grpc
+    - port: {{ .Values.milvus.service.ports.http }}
+      targetPort: http
+      name: http
+    - port: {{ .Values.milvus.service.ports.metrics }}
+      targetPort: metrics
+      name: metrics
   selector:
     app: milvus
+{{- end }}

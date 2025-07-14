@@ -1,3 +1,4 @@
+{{- if .Values.milvus.enabled }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -5,11 +6,11 @@ metadata:
   labels:
     app: milvus
 spec:
-  replicas: {{ .Values.milvus.replicas }}
+  serviceName: milvus
+  replicas: 1
   selector:
     matchLabels:
       app: milvus
-  serviceName: milvus-headless
   template:
     metadata:
       labels:
@@ -20,27 +21,44 @@ spec:
           image: "{{ .Values.milvus.image.repository }}:{{ .Values.milvus.image.tag }}"
           imagePullPolicy: {{ .Values.milvus.image.pullPolicy }}
           ports:
-            - containerPort: 19530
-              name: milvus
+            - containerPort: {{ .Values.milvus.service.ports.grpc }}
+              name: grpc
+            - containerPort: {{ .Values.milvus.service.ports.http }}
+              name: http
+            - containerPort: {{ .Values.milvus.service.ports.metrics }}
+              name: metrics
           env:
-            - name: MILVUS_USER
+            - name: ETCD_ENDPOINTS
+              value: {{ .Values.milvus.config.etcd.endpoints | quote }}
+            - name: MINIO_ENDPOINT
+              value: {{ .Values.milvus.config.minio.endpoint | quote }}
+            - name: MINIO_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.milvus.secret.name }}
-                  key: username
-            - name: MILVUS_PASSWORD
+                  name: milvus-secret
+                  key: minioAccessKey
+            - name: MINIO_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.milvus.secret.name }}
-                  key: password
+                  name: milvus-secret
+                  key: minioSecretKey
+            - name: MINIO_BUCKET_NAME
+              value: {{ .Values.milvus.config.minio.bucket | quote }}
+            - name: MINIO_USE_SSL
+              value: {{ .Values.milvus.config.minio.secure | quote }}
+            - name: PULSAR_ENDPOINT
+              value: {{ .Values.milvus.config.pulsar.endpoint | quote }}
           volumeMounts:
-            - name: milvus-storage
+            - name: milvus-data
               mountPath: /var/lib/milvus
+          resources:
+            {{- toYaml .Values.milvus.resources | nindent 12 }}
   volumeClaimTemplates:
     - metadata:
-        name: milvus-storage
+        name: milvus-data
       spec:
-        accessModes: {{ .Values.milvus.persistence.accessModes }}
+        accessModes: ["ReadWriteOnce"]
         resources:
           requests:
-            storage: {{ .Values.milvus.persistence.size }}
+            storage: {{ .Values.milvus.storage.size }}
+{{- end }}

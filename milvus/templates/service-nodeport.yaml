@@ -1,3 +1,4 @@
+{{- if and .Values.milvus.enabled .Values.milvus.service.nodePort.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,10 +8,14 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: {{ .Values.milvus.service.port }}
-      targetPort: milvus
-      nodePort: {{ .Values.milvus.service.nodePort }}
-      protocol: TCP
-      name: milvus
+    - port: {{ .Values.milvus.service.ports.grpc }}
+      targetPort: grpc
+      nodePort: {{ .Values.milvus.service.nodePort.ports.grpc }}
+      name: grpc
+    - port: {{ .Values.milvus.service.ports.http }}
+      targetPort: http
+      nodePort: {{ .Values.milvus.service.nodePort.ports.http }}
+      name: http
   selector:
     app: milvus
+{{- end }}

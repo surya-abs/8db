@@ -1,25 +1,37 @@
 milvus:
   enabled: true
   image:
-    repository: zilliz/milvus
-    tag: 2.0.0-rc8-20211104-d7f4106
+    repository: milvusdb/milvus
+    tag: v2.3.3
     pullPolicy: IfNotPresent
-
-  replicas: 1
-
-  service:
-    port: 19530
-    nodePort: 31953
-
-  persistence:
-    enabled: true
-    accessModes:
-      - ReadWriteOnce
+  storage:
     size: 10Gi
-
-  secret:
-    enabled: true
-    name: milvus-secret
-    data:
-      username: milvus
-      password: milvus123
+  config:
+    etcd:
+      endpoints: "milvus-etcd:2379"
+    minio:
+      endpoint: "milvus-minio:9000"
+      accessKey: "minioadmin"
+      secretKey: "minioadmin"
+      bucket: "milvus"
+      secure: false
+    pulsar:
+      endpoint: "milvus-pulsar:6650"
+  service:
+    type: ClusterIP
+    ports:
+      grpc: 19530
+      http: 9091
+      metrics: 9090
+    nodePort:
+      enabled: true
+      ports:
+        grpc: 30001
+        http: 30002
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "2Gi"
+    limits:
+      cpu: "2"
+      memory: "8Gi"
