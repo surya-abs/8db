@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: milvus-nodeport
+  labels:
+    app: milvus
+spec:
+  type: NodePort
+  ports:
+    - port: {{ .Values.milvus.service.port }}
+      targetPort: milvus
+      nodePort: {{ .Values.milvus.service.nodePort }}
+      protocol: TCP
+      name: milvus
+  selector:
+    app: milvus
